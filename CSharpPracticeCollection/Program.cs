@@ -18,7 +18,13 @@ class Program
             Console.WriteLine("-> [Конфиг] Настройки загружены.");
         });
         // ЗАДАНИЕ: Добавьте чтение конфига
-        /* Ваш код здесь */
+        Task readConfig = new Task(() =>
+        {
+            Console.WriteLine("Загрузка текущей конфигурации");
+            Thread.Sleep(500);
+            Console.WriteLine("Текущая конфигурация: ... ");
+
+        });
         // ЗАДАНИЕ: Запустите configTask СИНХРОННО
         /* Ваш код здесь */
 
