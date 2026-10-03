@@ -26,7 +26,7 @@ class Program
 
         });
         // ЗАДАНИЕ: Запустите configTask СИНХРОННО
-        /* Ваш код здесь */
+        configTask.RunSynchronously();
 
         Console.WriteLine("Main: Продолжаем работу сразу после конфига.\n");
 
