@@ -20,7 +20,7 @@ class Program
         // ЗАДАНИЕ: Добавьте чтение конфига
         Task readConfig = new Task(() =>
         {
-            Console.WriteLine("Загрузка текущей конфигурации");
+            Console.WriteLine("Загрузка текущей конфигурации...");
             Thread.Sleep(500);
             Console.WriteLine("Текущая конфигурация: ... ");
 
@@ -36,8 +36,12 @@ class Program
         // ==========================================
         // ЗАДАНИЕ: Создайте и запустите задачу через Task.Factory.StartNew. 
         // Внутри выведите сообщение "Загрузка логов..." и сделайте задержку 1.5 секунды.
-        Task downloadTask = /* Ваш код здесь */;
-
+        Task downloadTask = Task.Factory.StartNew(() =>
+        {
+            Console.WriteLine("Загрузка логов...");
+            Thread.Sleep(1500);
+            Console.WriteLine("Загрузка логов завершена.");
+        });
         // ЗАДАНИЕ: Пока задача выполняется, выводите в консоль точки (анимация загрузки)
         while (!downloadTask.IsCompleted)
         {
