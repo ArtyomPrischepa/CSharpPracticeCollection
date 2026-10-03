@@ -44,7 +44,19 @@ namespace TaskPractice
             // =========================================================================
             Console.WriteLine("[Тест 2: Прикрепленная задача]");
 
-            // Ваш код для Задачи 2 здесь...
+            Task outer = Task.Factory.StartNew(() =>
+            {
+                Console.WriteLine("запуск outer");
+                Task inner = Task.Factory.StartNew(() =>
+                {
+                    Console.WriteLine("запуск inner");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("завершение inner");
+                },TaskCreationOptions.AttachedToParent);
+                Thread.Sleep(1000);
+                Console.WriteLine("завершение outer");
+            });
+            outer.Wait();
 
             Console.WriteLine("\n---------------------------------------------------\n");
 
