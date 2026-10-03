@@ -45,7 +45,11 @@ namespace TaskPractice
             // =========================================================================
             Console.WriteLine("[Тест 3: Ожидание всех задач из массива]");
 
-            // Ваш код для Задачи 3 здесь...
+            Task[] tasks = { new(() => { Thread.Sleep(500); }), new(() => { Thread.Sleep(1000); }),
+                new(() => { Thread.Sleep(1500); })};
+            foreach (var task in tasks)
+                task.Start();
+            Task.WaitAll(tasks);
 
             Console.WriteLine("\n---------------------------------------------------\n");
 
