@@ -45,7 +45,7 @@ class Program
         Console.WriteLine();
 
         // ЗАДАНИЕ: Окончательно заблокируйте поток до завершения (на всякий случай)
-        /* Ваш код здесь */
+        downloadTask.Wait();
         Console.WriteLine($"[Логи] Загрузка завершена. Статус задачи: {downloadTask.Status}\n");
 
 
