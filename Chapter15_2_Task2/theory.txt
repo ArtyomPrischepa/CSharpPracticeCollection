@@ -2,6 +2,18 @@
 
 * Независимость по умолчанию: Внутренняя задача выполняется отдельно от внешней.
 * Привязка к родителю: Флаг TaskCreationOptions.AttachedToParent делает внутреннюю задачу частью внешней.
+    var outer = Task.Factory.StartNew(() =>      // внешняя задача
+    {
+        Console.WriteLine("Outer task starting...");
+        var inner = Task.Factory.StartNew(() =>  // вложенная задача
+        {
+            Console.WriteLine("Inner task starting...");
+            Thread.Sleep(2000);
+            Console.WriteLine("Inner task finished.");
+        }, TaskCreationOptions.AttachedToParent);
+    });
+    outer.Wait(); // ожидаем выполнения внешней задачи
+    Console.WriteLine("End of Main");
 * Ожидание: Внешняя задача не завершится, пока выполняются прикрепленные к ней вложенные задачи.
 
 ## Массив задач (Task Array)
