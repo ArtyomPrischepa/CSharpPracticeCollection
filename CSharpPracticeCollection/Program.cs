@@ -11,12 +11,6 @@ class Program
         // ==========================================
         // ЭТАП 1: Синхронный запуск (new Task)
         // ==========================================
-        Task configTask = new Task(() =>
-        {
-            Console.WriteLine("-> [Конфиг] Загрузка настроек...");
-            Thread.Sleep(500);
-            Console.WriteLine("-> [Конфиг] Настройки загружены.");
-        });
         // ЗАДАНИЕ: Добавьте чтение конфига
         Task readConfig = new Task(() =>
         {
@@ -26,7 +20,7 @@ class Program
 
         });
         // ЗАДАНИЕ: Запустите configTask СИНХРОННО
-        configTask.RunSynchronously();
+        readConfig.RunSynchronously();
 
         Console.WriteLine("Main: Продолжаем работу сразу после конфига.\n");
 
