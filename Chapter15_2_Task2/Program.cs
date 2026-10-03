@@ -19,7 +19,19 @@ namespace TaskPractice
             // =========================================================================
             Console.WriteLine("[Тест 1: Независимая задача]");
 
-            // Ваш код для Задачи 1 здесь...
+            Task outer = Task.Run(() =>
+            {
+                Console.WriteLine("запуск outer");
+                Task inner = Task.Run(() =>
+                {
+                    Console.WriteLine("запуск inner");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("завершение inner");
+                });
+                Thread.Sleep(1000);
+                Console.WriteLine("завершение outer");
+            });
+            outer.Wait();
 
             Console.WriteLine("\n---------------------------------------------------\n");
 
