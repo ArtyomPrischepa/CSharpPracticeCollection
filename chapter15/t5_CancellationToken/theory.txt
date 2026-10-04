@@ -1,0 +1,17 @@
+• Управление отменой: CancellationTokenSource генерирует токен и отправляет сигнал отмены через метод Cancel().
+
+• Связующий токен: Сам CancellationToken передается внутрь задачи.
+Объект CancellationTokenSource реализует IDisposable, поэтому его нужно очищать через Dispose() или using.
+
+• Проверка сигнала (IsCancellationRequested): Это свойство токена возвращает true, если был вызван Cancel().
+
+• Способы выхода из задачи:
+
+	1. Мягкий выход: Проверить token.IsCancellationRequested и выйти через return. 
+	Статус задачи станет RanToCompletion.
+
+	2. Жесткий выход (с исключением): Вызвать token.ThrowIfCancellationRequested().
+	Задача выбросит OperationCanceledException (внутри AggregateException) и получит статус Canceled.
+
+• Отмена в Parallel: Для прерывания циклов Parallel.For/ForEach токен передается через объект настроек
+new ParallelOptions { CancellationToken = token }.
