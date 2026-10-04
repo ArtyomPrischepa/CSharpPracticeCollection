@@ -1,8 +1,9 @@
 <Solution>
   <Folder Name="/Chapter15/">
-    <Project Path="t1_Task/t1_Task.csproj" />
-    <Project Path="t2_Task/t2_Task.csproj" />
-    <Project Path="t3_ContinueWith/t3_ContinueWith.csproj" Id="8b5818dc-4d1a-435c-970d-e848fe898ab8" />
-    <Project Path="t4_Parallel/t4_Parallel.csproj" Id="c8c6aea5-1312-4c9b-b546-4c5d0b344e1a" />
+    <Project Path="chapter15/t1_Task/t1_Task.csproj" />
+    <Project Path="chapter15/t2_Task/t2_Task.csproj" />
+    <Project Path="chapter15/t3_ContinueWith/t3_ContinueWith.csproj" Id="8b5818dc-4d1a-435c-970d-e848fe898ab8" />
+    <Project Path="chapter15/t4_Parallel/t4_Parallel.csproj" Id="c8c6aea5-1312-4c9b-b546-4c5d0b344e1a" />
   </Folder>
+  <Project Path="chapter15/t5_CancellationToken/t5_CancellationToken.csproj" Id="265ddd41-23a1-4cec-bbd3-aac3da12205f" />
 </Solution>

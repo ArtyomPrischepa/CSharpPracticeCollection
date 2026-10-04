@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Net.Sockets;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("--- Старт программы ---\n");
+
+        // ЗАДАЧА 1: Запустите параллельно три действия с помощью Parallel.Invoke.
+        // Первое — выводит "Действие 1", второе — "Действие 2", третье — задержка Thread.Sleep(1000).
+
+        Parallel.Invoke(() => Console.WriteLine("action 1"), () => Console.WriteLine("action 2"), () => Thread.Sleep(1000));
+
+
+        Console.WriteLine("\n-----------------------\n");
+
+
+        // ЗАДАЧА 2: Переберите список имен параллельно с помощью Parallel.ForEach.
+        // Если длина имени равна 4 символам ("Ivan"), прервите цикл с помощью ParallelLoopState.
+        // Выведите в консоль результат: завершился ли цикл полностью (IsCompleted).
+        var users = new List<string> { "Tom", "Bob", "Ivan", "Alice", "Ivan", "Sam" };
+        object locker = new object();
+        int fastestIndex = -1;
+        string? fastestUser = null;
+
+        ParallelLoopResult result = Parallel.ForEach(users, (string x, ParallelLoopState pls) =>
+        {
+            if (x.Length == 4)
+                pls.Break();
+
+    });
+
+        ParallelLoopResult result2 = Parallel.ForEach(users, (string x, ParallelLoopState pls, long index) =>
+        {
+            if (x.Length == 4)
+            {
+                pls.Stop();
+                // Используем lock, чтобы потоки не перезаписали переменную одновременно
+                lock (locker)
+                {
+                    if (fastestIndex == -1)
+                    {
+                        fastestIndex = (int)index;
+                        fastestUser = x;
+                    }
+                }
+            }
+
+        });
+        ParallelLoopResult result3 = Parallel.For(0, 6, (int index, ParallelLoopState pls) =>
+        {
+            if (users[index] == "Ivan")
+                pls.Break();
+        });
+
+        Console.WriteLine($"Цикл 1 статус: {result.IsCompleted}");
+        Console.WriteLine($"первое вхождение слова из 4 символов на индексе: {result.LowestBreakIteration}");
+        Console.WriteLine($"Цикл 2 статус: {result2.IsCompleted}");
+        Console.WriteLine($"слово из 4 символов быстрее всего найдено по индексу: {fastestIndex} ({fastestUser})");
+        Console.WriteLine($"Цикл 3 статус: {result3.IsCompleted}");
+        Console.WriteLine($"Первый найденный Иван под индексом: {result3.LowestBreakIteration}");
+
+        Console.WriteLine("\n--- Конец программы ---");
+        Console.ReadLine();
+    }
+}
