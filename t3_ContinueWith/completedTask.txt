@@ -1,0 +1,41 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("--- Старт программы ---\n");
+
+        // ЗАДАЧА 1: Создайте базовую задачу (генерирует случайное число от 1 до 10) 
+        // и задачу продолжения к ней, которая выведет Id первой задачи и ее результат.
+        Task<int> random1_10 = Task.Run(() =>
+        {
+            int number = new Random().Next(1,11);
+            return number;
+        });
+
+        Task nextTask = random1_10.ContinueWith((t) => Console.WriteLine($"результат {t.Result}, id {t.Id}"));
+        nextTask.Wait();
+
+        Console.WriteLine("\n-----------------------\n");
+
+
+        // ЗАДАЧА 2: Постройте цепочку из 3-х задач (Конвейер данных).
+        // 1-я задача возвращает строку "hello".
+        // 2-я задача (продолжение) принимает строку, делает её заглавными буквами ("HELLO") и возвращает её.
+        // 3-я задача (продолжение) принимает результат второй и выводит в консоль: "Итоговый результат: HELLO".
+        Task<string> initialTask = new Task<string>(() => "hello");
+        Task<string> task1 = initialTask.ContinueWith((t) => t.Result.ToUpper());
+        Task finalTask = task1.ContinueWith((t) => Console.WriteLine("Итоговый результат: " + t.Result));
+        initialTask.Start();
+        finalTask.Wait();
+
+
+
+        Console.WriteLine("\n--- Конец программы ---");
+        Console.ReadLine();
+    }
+}
+

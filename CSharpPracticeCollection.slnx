@@ -1,4 +1,8 @@
 <Solution>
-  <Project Path="Chapter15_2_Task2/Chapter15_2_Task2.csproj" />
-  <Project Path="CSharpPracticeCollection/Chapter15_1_Task.csproj" />
+  <Folder Name="/Chapter15/">
+    <Project Path="t1_Task/t1_Task.csproj" />
+    <Project Path="t2_Task/t2_Task.csproj" />
+    <Project Path="t3_ContinueWith/t3_ContinueWith.csproj" Id="8b5818dc-4d1a-435c-970d-e848fe898ab8" />
+    <Project Path="t4_Parallel/t4_Parallel.csproj" Id="c8c6aea5-1312-4c9b-b546-4c5d0b344e1a" />
+  </Folder>
 </Solution>
