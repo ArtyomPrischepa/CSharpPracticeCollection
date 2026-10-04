@@ -8,8 +8,10 @@
   </Folder>
   <Folder Name="/Chapter16/">
     <Project Path="chapter16/t1_AsyncAwait/t1_AsyncAwait.csproj" Id="b900eddc-45c0-49f1-8cb9-202bececa20e" />
+    <Project Path="chapter16/t2_AsyncResult/t2_AsyncResult.csproj" Id="98c26d6c-1513-4116-bd14-929a1413a1a1" />
   </Folder>
   <Folder Name="/Элементы решения/">
     <File Path="gitCommands.txt" />
+    <Project Path="Test/Test.csproj" Id="020453aa-bca7-4194-82f8-a050ffd406c5" />
   </Folder>
 </Solution>
