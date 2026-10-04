@@ -89,7 +89,12 @@ namespace TaskPractice
             // =========================================================================
             Console.WriteLine("[Тест 4: Ожидание первой задачи]");
 
-            // Ваш код для Задачи 4 здесь...
+            Task[] tasks2 = { new(() => { Thread.Sleep(500); }), new(() => { Thread.Sleep(1000); }),
+                new(() => { Thread.Sleep(1500); })};
+            foreach (var task in tasks2)
+                task.Start();
+            var index = Task.WaitAny(tasks);
+            Console.WriteLine("Первая выполненная задача имеет индекс " +  index);
 
             Console.WriteLine("\n---------------------------------------------------\n");
 
