@@ -106,11 +106,17 @@ namespace TaskPractice
             // Получите значение через свойство .Result и выведите его в консоль.
             // =========================================================================
             Console.WriteLine("[Тест 5: Получение результата из Task<T>]");
+            int num1 = 10;
+            int num2 = 20;
+            Task<int> sumTask = Task.Run(() => Sum(num1, num2));
+            int result = sumTask.Result;
+            Console.WriteLine($"Результат сложения: {result}");
+            static int Sum(int a, int b)
+            {
+                return a + b;
+            }
 
-            // Ваш код для Задачи 5 здесь...
-
-
-            Console.WriteLine("\n--- ПРАКТИКА ЗАВЕРШЕНА ---");
+        Console.WriteLine("\n--- ПРАКТИКА ЗАВЕРШЕНА ---");
             Console.ReadLine();
         }
     }
