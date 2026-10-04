@@ -21,15 +21,15 @@ namespace TaskPractice
 
             Task outer = Task.Run(() =>
             {
-                Console.WriteLine("запуск outer");
+                Console.WriteLine("запуск outer Тест 1");
                 Task inner = Task.Run(() =>
                 {
-                    Console.WriteLine("запуск inner");
+                    Console.WriteLine("запуск inner Тест 1");
                     Thread.Sleep(2000);
-                    Console.WriteLine("завершение inner");
+                    Console.WriteLine("завершение inner Тест 1");
                 });
                 Thread.Sleep(1000);
-                Console.WriteLine("завершение outer");
+                Console.WriteLine("завершение outer Тест 1");
             });
             outer.Wait();
 
@@ -44,19 +44,22 @@ namespace TaskPractice
             // =========================================================================
             Console.WriteLine("[Тест 2: Прикрепленная задача]");
 
-            Task outer = Task.Factory.StartNew(() =>
+            Task outer2 = Task.Factory.StartNew(() =>
             {
-                Console.WriteLine("запуск outer");
+                Console.WriteLine("запуск outer Тест 2");
                 Task inner = Task.Factory.StartNew(() =>
                 {
-                    Console.WriteLine("запуск inner");
+                    Console.WriteLine("запуск inner Тест 2" +
+                        "");
                     Thread.Sleep(2000);
-                    Console.WriteLine("завершение inner");
+                    Console.WriteLine("завершение inner Тест 2" +
+                        "");
                 },TaskCreationOptions.AttachedToParent);
                 Thread.Sleep(1000);
-                Console.WriteLine("завершение outer");
+                Console.WriteLine("завершение outer Тест 2" +
+                    "");
             });
-            outer.Wait();
+            outer2.Wait();
 
             Console.WriteLine("\n---------------------------------------------------\n");
 
