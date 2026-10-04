@@ -9,4 +9,7 @@
   <Folder Name="/Chapter16/">
     <Project Path="chapter16/t1_AsyncAwait/t1_AsyncAwait.csproj" Id="b900eddc-45c0-49f1-8cb9-202bececa20e" />
   </Folder>
+  <Folder Name="/Элементы решения/">
+    <File Path="gitCommands.txt" />
+  </Folder>
 </Solution>
