@@ -18,6 +18,10 @@
     <Project Path="chapter17/t2_LINQ/t2_LINQ.csproj" Id="30231471-719e-4854-bdda-42f5658544a5" />
     <Project Path="chapter17/t3_LINQ/t3_LINQ.csproj" Id="8967145d-133a-4f2b-8bd5-1c175aae56b4" />
     <Project Path="chapter17/t4_LINQ_OrderBy/t4_LINQ_OrderBy.csproj" Id="7623eac5-c3bb-4c86-b215-3e8cb1d68d7c" />
+    <Project Path="chapter17/t5_LINQ_Union/t5_LINQ_Union.csproj" Id="573e755d-51bd-44b3-820c-fdde2a7c41ae" />
+    <Project Path="chapter17/t6_LINQ_Aggregate/t6_LINQ_Aggregate.csproj" Id="683686a1-0ec5-4ccd-9f34-f2ccc90efb03" />
+    <Project Path="chapter17/t7_LINQ_Skip/t7_LINQ_Skip.csproj" Id="0e5b843d-cd0f-40e4-b4bf-cf6f634b33fe" />
+    <Project Path="chapter17/t8_LINQ_GroupBy/t8_LINQ_GroupBy.csproj" Id="3dd92867-2a80-4ce2-b0e7-f567aee107f2" />
   </Folder>
   <Folder Name="/Элементы решения/">
     <File Path="gitCommands.txt" />

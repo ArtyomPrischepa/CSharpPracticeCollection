@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace LinqGroupingPractice
+{
+    // Исходная модель данных
+    public record class Product(string Name, string Category, double Price);
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Product> products = new List<Product>
+            {
+                new Product("iPhone 15", "Smartphones", 999.99),
+                new Product("Samsung Galaxy S24", "Smartphones", 899.99),
+                new Product("MacBook Pro 16", "Laptops", 2499.99),
+                new Product("ASUS ROG Zephyrus", "Laptops", 1899.99),
+                new Product("iPad Pro", "Tablets", 799.99),
+                new Product("Google Pixel 8", "Smartphones", 699.99)
+            };
+
+            Console.WriteLine("--- Задание 1: Простая группировка (Query Syntax) ---");
+            // ТРЕБОВАНИЕ: Сгруппируйте продукты по категории (Category), используя синтаксис запросов LINQ (from ... group ... by)
+            var queryGroups = from p in products
+                              // ПОДПИШИТЕ КОД ЗДЕСЬ 
+                              select p; // Внимание: эта заглушка неверна, замените её согласно правилам группировки
+
+            foreach (var group in queryGroups)
+            {
+                // ПОДПИШИТЕ КОД ЗДЕСЬ: Выведите ключ группы (Название категории)
+                Console.WriteLine($"Категория: {group.Key}");
+
+                foreach (var product in group)
+                {
+                    Console.WriteLine($" - {product.Name} (${product.Price})");
+                }
+            }
+
+
+            Console.WriteLine("\n--- Задание 2: Группировка через метод расширения (Method Syntax) ---");
+            // ТРЕБОВАНИЕ: Сгруппируйте продукты по категории (Category), используя метод расширения .GroupBy()
+            var methodGroups = products.// ПОДПИШИТЕ КОД ЗДЕСЬ 
+
+            foreach (var group in methodGroups)
+            {
+                Console.WriteLine($"Категория: {group.Key} (Элементов: {group.Count()})");
+            }
+
+
+            Console.WriteLine("\n--- Задание 3: Создание нового анонимного объекта ---");
+            // ТРЕБОВАНИЕ: Сгруппируйте продукты по категории и спроектируйте результат в анонимный тип.
+            // Объект должен содержать свойства:
+            // CategoryName (название категории)
+            // ProductCount (количество товаров в ней)
+            // AveragePrice (средняя цена товаров в категории)
+
+            var categoryStats = products
+                .GroupBy(p => p.Category)
+                .Select(g => new
+                {
+                    // ПОДПИШИТЕ КОД ЗДЕСЬ
+                    // CategoryName = ...
+                    // ProductCount = ...
+                    // AveragePrice = ...
+                });
+
+            foreach (var stat in categoryStats)
+            {
+                Console.WriteLine($"Категория: {stat.CategoryName} | Всего: {stat.ProductCount} | Средняя цена: ${stat.AveragePrice:F2}");
+            }
+
+
+            Console.WriteLine("\n--- Задание 4: Вложенные запросы ---");
+            // ТРЕБОВАНИЕ: Сгруппируйте продукты по категории. Сформируйте анонимный объект, 
+            // содержащий имя категории (Key) и список только НАЗВАНИЙ продуктов (string) внутри этой категории.
+
+            var nestedQuery = from p in products
+                              group p by p.Category into g
+                              select new
+                              {
+                                  Category = g.Key,
+                                  Titles = // ПОДПИШИТЕ КОД ЗДЕСЬ 
+                              };
+
+            foreach (var item in nestedQuery)
+            {
+                Console.WriteLine($"В категории {item.Category} находятся:");
+                foreach (var title in item.Titles)
+                {
+                    Console.WriteLine($" -> {title}");
+                }
+            }
+        }
+    }
+}
