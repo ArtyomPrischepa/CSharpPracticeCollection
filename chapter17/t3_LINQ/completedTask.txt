@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+record class Game(string Title, string Genre, double Rating);
+
+class Program
+{
+    static void Main()
+    {
+        var games = new List<Game>
+        {
+            new Game("The Witcher 3", "RPG", 9.8),
+            new Game("Doom Eternal", "Action", 8.8),
+            new Game("Cyberpunk 2077", "RPG", 8.6),
+            new Game("Minecraft", "Sandbox", 9.3),
+            new Game("Hades", "Action", 9.0)
+        };
+
+        // Задание 1: Используя метод расширения Where(), выбери игры с рейтингом строго выше 9.0
+        var highlyRatedGames = games.Where(x => x.Rating > 9.0);// ТВОЙ КОД ЗДЕСЬ
+
+        Console.WriteLine("Игры с рейтингом > 9.0:");
+        foreach (var game in highlyRatedGames)
+        {
+            Console.WriteLine($"- {game.Title} ({game.Rating})");
+        }
+
+
+        // Задание 2: Используя синтаксис запросов (from... where... select), выбери только игры жанра "RPG"
+        var rpgGames = from g in games
+                       where g.Genre == "RPG"
+                       select g;// ТВОЙ КОД ЗДЕСЬ
+
+        Console.WriteLine("\nИгры в жанре RPG:");
+        foreach (var game in rpgGames)
+        {
+            Console.WriteLine($"- {game.Title}");
+        }
+    }
+}

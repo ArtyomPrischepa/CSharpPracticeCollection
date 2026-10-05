@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+record class Product(string Name, int Price, string Category);
+
+class Program
+{
+    static void Main()
+    {
+        var products = new List<Product>
+        {
+            new Product("Laptop", 1200, "Electronics"),
+            new Product("Smartphone", 800, "Electronics"),
+            new Product("Coffee Maker", 150, "Appliances"),
+            new Product("Blender", 150, "Appliances"),
+            new Product("Book", 20, "Books")
+        };
+
+        // ЗАДАНИЕ 1: Отсортируй продукты по цене (по возрастанию) 
+        // Используй СИНТАКСИС МЕТОДОВ (Extension Methods)
+        var sortedByPriceAsc = products./* ТВОЙ КОД ЗДЕСЬ */;
+
+        Console.WriteLine("Сортировка по цене (возрастание):");
+        foreach (var p in sortedByPriceAsc) Console.WriteLine($"{p.Name} - {p.Price}");
+
+
+        // ЗАДАНИЕ 2: Отсортируй продукты по названию (по убыванию/Z-A)
+        // Используй СИНТАКСИС ЗАПРОСОВ (Query Syntax: from ... in ... orderby ...)
+        var sortedByNameDesc = from p in products
+                               /* ТВОЙ КОД ЗДЕСЬ */
+                               select p;
+
+        Console.WriteLine("\nСортировка по имени (убывание):");
+        foreach (var p in sortedByNameDesc) Console.WriteLine(p.Name);
+
+
+        // ЗАДАНИЕ 3: Множественная сортировка. 
+        // Сначала отсортируй по Категории (по возрастанию), а затем по Цене (по убыванию).
+        // Используй СИНТАКСИС МЕТОДОВ (.OrderBy().ThenBy...)
+        var complexSorted = products./* ТВОЙ КОД ЗДЕСЬ */;
+
+        Console.WriteLine("\nСортировка по категории (возр.) и цене (убыв.):");
+        foreach (var p in complexSorted) Console.WriteLine($"[{p.Category}] {p.Name} - {p.Price}");
+    }
+}

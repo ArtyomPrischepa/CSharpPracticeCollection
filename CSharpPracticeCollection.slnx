@@ -13,6 +13,12 @@
     <Project Path="chapter16/t4_TryAwait/t4_TryAwait.csproj" Id="1460b7b6-a5b7-4c76-9722-89e128c62835" />
     <Project Path="chapter16/t5_IAsyncEnumerable/t5_IAsyncEnumerable.csproj" Id="3164dcad-f400-4fd8-8b13-082f58122b60" />
   </Folder>
+  <Folder Name="/Chapter17/">
+    <Project Path="chapter17/t1_LINQ/t1_LINQ.csproj" Id="67857907-6aa4-4640-8cc4-f6459af894f5" />
+    <Project Path="chapter17/t2_LINQ/t2_LINQ.csproj" Id="30231471-719e-4854-bdda-42f5658544a5" />
+    <Project Path="chapter17/t3_LINQ/t3_LINQ.csproj" Id="8967145d-133a-4f2b-8bd5-1c175aae56b4" />
+    <Project Path="chapter17/t4_LINQ_OrderBy/t4_LINQ_OrderBy.csproj" Id="7623eac5-c3bb-4c86-b215-3e8cb1d68d7c" />
+  </Folder>
   <Folder Name="/Элементы решения/">
     <File Path="gitCommands.txt" />
     <Project Path="Test/Test.csproj" Id="020453aa-bca7-4194-82f8-a050ffd406c5" />

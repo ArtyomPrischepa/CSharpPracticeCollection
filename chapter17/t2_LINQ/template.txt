@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+// 1. Исходные модели данных
+record class Subject(string Name, int Hours);
+record class Student(string Name, List<Subject> LearnedSubjects);
+
+class Program
+{
+    static void Main()
+    {
+        // Наш начальный список студентов с их предметами
+        var students = new List<Student>
+        {
+            new Student("Алексей", new List<Subject> { new Subject("C#", 40), new Subject("SQL", 20) }),
+            new Student("Мария", new List<Subject> { new Subject("Java", 45), new Subject("C#", 30) }),
+            new Student("Иван", new List<Subject> { new Subject("Python", 50) })
+        };
+
+        // ==========================================
+        // ЗАДАНИЕ 1: Простая проекция (Select)
+        // Получите список ТОЛЬКО имен всех студентов.
+        // ==========================================
+        
+        // Переменная names должна содержать IEnumerable<string>
+        // НАПИШИТЕ ВАШ КОД ЗДЕСЬ:
+        // var names = ...
+        
+        Console.WriteLine("Имена студентов:");
+        // Раскомментируйте для проверки:
+        // foreach (var name in names) Console.WriteLine(name);
+
+
+        // ==========================================
+        // ЗАДАНИЕ 2: Проекция в анонимный тип
+        // Создайте список анонимных объектов, у которых будет два свойства:
+        // StudentName (имя студента) и SubjectCount (кол-во изучаемых им предметов).
+        // ==========================================
+        
+        // НАПИШИТЕ ВАШ КОД ЗДЕСЬ:
+        // var studentStats = ...
+
+        Console.WriteLine("\nСтатистика студентов:");
+        // Раскомментируйте для проверки:
+        // foreach (var stat in studentStats) Console.WriteLine($"{stat.StudentName} учит предметов: {stat.SubjectCount}");
+
+
+        // ==========================================
+        // ЗАДАНИЕ 3: Сведение коллекций (SelectMany)
+        // Получите плоский список ВСЕХ предметов, которые изучают ВСЕ студенты.
+        // Подсказка: на выходе должен быть общий список объектов Subject.
+        // ==========================================
+        
+        // НАПИШИТЕ ВАШ КОД ЗДЕСЬ:
+        // var allSubjects = ...
+
+        Console.WriteLine("\nВсе изучаемые предметы в потоке:");
+        // Раскомментируйте для проверки:
+        // foreach (var sub in allSubjects) Console.WriteLine($"{sub.Name} ({sub.Hours} ч.)");
+    }
+}
