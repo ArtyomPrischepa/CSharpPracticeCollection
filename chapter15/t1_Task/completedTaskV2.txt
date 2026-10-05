@@ -1,0 +1,65 @@
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    static void Main(string[] Ends)
+    {
+        Console.WriteLine("=== Программа запущена ===");
+
+        // ==========================================
+        // ЭТАП 1: Синхронный запуск (new Task)
+        // ==========================================
+        // ЗАДАНИЕ: Добавьте чтение конфига с задержкой 1 секунда
+
+        var task =  new Task(()=> { Thread.Sleep(1000); Console.WriteLine("reading config"); });
+
+        // ответ: можно и через создание таска и старт, но это избыточно
+        // ЗАДАНИЕ: Запустите чтение конфигов СИНХРОННО
+        /* Ваш код здесь */
+        task.RunSynchronously();
+        Console.WriteLine("Main: Продолжаем работу сразу после конфига.");
+
+
+        // ==========================================
+        // ЭТАП 2: Фабрика задач и проверка свойств
+        // ==========================================
+        // ЗАДАНИЕ: Создайте и запустите задачу через фабрику. 
+        // Внутри выведите сообщение "Загрузка логов" и сделайте задержку 2 секунды c анимацией загрузки (точками).
+        // Внутри добавьте айди текущей задачи и её текущий статус.
+        Task downloadTask = Task.Factory.StartNew(() =>
+        {
+            Console.WriteLine($"айди {Task.CurrentId} статус Running");
+            Console.Write("loading logs");
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write(".");
+                Thread.Sleep(200);
+            }
+        });
+
+        // ЗАДАНИЕ: Окончательно заблокируйте поток до завершения (на всякий случай)
+        downloadTask.Wait();
+        // Проверьте завершена ли задача
+        Console.WriteLine($"\nЗагрузка логов завершена. айди {downloadTask.Id} статус {downloadTask.Status}");
+        // ==========================================
+        // ЭТАП 3: Стандартный запуск задачи
+        // ==========================================
+        // ЗАДАНИЕ: Создайте и запустите задачу стандартным способом.
+        Task analysisTask = Task.Run(() => { Thread.Sleep(1000); Console.WriteLine("analysisTask"); });
+
+
+        // ЗАДАНИЕ: Дождитесь завершения анализа
+        /* Ваш код здесь */
+        analysisTask.Wait();
+        // ЗАДАНИЕ: После выполнения analysisTask выведите айди задачи и её статус
+        Console.WriteLine($"[Анализ] ID задачи: {analysisTask.Id}, Статус: {analysisTask.Status}");
+        // ЗАДАНИЕ: Выведите финальный статус и проверьте успешность через IsCompletedSuccessfully
+        Console.WriteLine($"[Анализ] Завершен! Финальный статус: {analysisTask.Status}");
+        Console.WriteLine($"[Анализ] Успешно? {analysisTask.IsCompletedSuccessfully}");
+
+        Console.WriteLine("=== Программа успешно завершена ===");
+        Console.ReadLine();
+    }
+}

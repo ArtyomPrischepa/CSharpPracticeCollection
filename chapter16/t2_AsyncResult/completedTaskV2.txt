@@ -1,0 +1,79 @@
+﻿using System;
+using System.Threading.Tasks;
+
+// --- ПРОВЕРКА РАБОТЫ (Вызывающий код) ---
+
+Console.WriteLine("Запуск программы...");
+
+// 1. Вызов Task<T>
+int userId = await GetUserIdAsync("admin");
+Console.WriteLine($"Задача 1: ID пользователя = {userId}");
+
+// 2. Вызов Task
+Console.WriteLine("Задача 2: Начинаем логирование...");
+await LogMessageAsync("Действие выполнено успешно.");
+
+// 3. Вызов ValueTask<T>
+string cache1 = await GetCachedDataAsync(1); // Синхронный возврат
+string cache2 = await GetCachedDataAsync(5); // Асинхронный возврат с задержкой
+Console.WriteLine($"Задача 3: {cache1} | {cache2}");
+
+// 4. Вызов void (через событие)
+Button button = new Button();
+button.Click += OnButtonClickAsync; // Подписка
+button.Push();                 // Симуляция клика
+
+await Task.Delay(1500); // Ждем завершения фонового void-метода
+Console.WriteLine("Программа завершена.");
+
+
+// --- ЗАДАНИЯ ДЛЯ РЕАЛИЗАЦИИ ---
+
+// ТЕСТ 1: Реализуйте метод, который принимает имя и асинхронно (через Task.Delay на 500мс) возвращает его ID (например, длину имени).
+static async Task<int> GetUserIdAsync(string username)
+{
+    // TODO: Добавьте задержку и верните int
+    await Task.Delay(500);
+    return username.Length;
+}
+
+// ТЕСТ 2: Реализуйте метод логирования, который имитирует долгую запись в файл (задержка 1000мс), выводит строку в консоль, но ничего не возвращает.
+static async Task LogMessageAsync(string message)
+{
+    // TODO: Добавьте задержку и вывод сообщения в консоль
+    await Task.Delay(1000);
+    Console.WriteLine(message);
+}
+
+// ТЕСТ 3: Реализуйте оптимизированный метод получения данных. Если id == 1, мгновенно верните значение "Данные из кэша" без создания Task. В остальных случаях сделайте задержку 500мс и верните "Данные из БД".
+static ValueTask<string> GetCachedDataAsync(int id)
+{
+    // TODO: Если id == 1 -> верните ValueTask напрямую. Иначе -> асинхронно через async/await.
+    if (id == 1)
+        return new ValueTask<string>("Заглушка");
+    else
+    {
+        return GetDataAsync(id);
+    }
+    static async ValueTask<string> GetDataAsync(int id)
+    {
+        await Task.Delay(500);
+        return "data from db";
+    }
+}
+
+// ТЕСТ 4: Реализуйте асинхронный void-метод для обработки события. Внутри должна быть имитация долгой работы (задержка 1000мс) и вывод в консоль фразы "Кнопка обработана асинхронно".
+static async void OnButtonClickAsync(object? sender, EventArgs e)
+{
+    // TODO: Реализуйте асинхронный обработчик события с выводом в консоль
+    await Task.Delay(1000);
+    Console.WriteLine($"Button clicked on {sender}");
+}
+
+
+// --- ВСПОМОГАТЕЛЬНЫЙ КЛАСС ДЛЯ СОБЫТИЯ ---
+class Button
+{
+    public event EventHandler? Click;
+    public void Push() => Click?.Invoke(this, EventArgs.Empty);
+}
