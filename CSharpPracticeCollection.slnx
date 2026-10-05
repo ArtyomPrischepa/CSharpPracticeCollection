@@ -11,6 +11,7 @@
     <Project Path="chapter16/t2_AsyncResult/t2_AsyncResult.csproj" Id="98c26d6c-1513-4116-bd14-929a1413a1a1" />
     <Project Path="chapter16/t3_TaskWhenAllAny/t3_TaskWhenAllAny.csproj" Id="a004082a-93ed-46f6-891f-0ab0a15bb716" />
     <Project Path="chapter16/t4_TryAwait/t4_TryAwait.csproj" Id="1460b7b6-a5b7-4c76-9722-89e128c62835" />
+    <Project Path="chapter16/t5_IAsyncEnumerable/t5_IAsyncEnumerable.csproj" Id="3164dcad-f400-4fd8-8b13-082f58122b60" />
   </Folder>
   <Folder Name="/Элементы решения/">
     <File Path="gitCommands.txt" />
