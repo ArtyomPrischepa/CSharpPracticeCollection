@@ -1,0 +1,33 @@
+using System;
+using System.Linq;
+using System.Threading;
+
+class Program
+{
+    static void Main()
+    {
+        // Генерируем массив от 1 до 50
+        int[] numbers = Enumerable.Range(1, 50).ToArray();
+
+        Console.WriteLine("Начинаем параллельную фильтрацию...");
+
+        // ЗАДАНИЕ: 
+        // 1. Сделайте запрос параллельным.
+        // 2. Отфильтруйте числа, оставив только четные (n % 2 == 0), используя метод IsHeavyEven.
+        // 3. Выведите результат в консоль максимально эффективно (в параллельных потоках).
+
+        numbers.AsParallel().Select(IsHeavyEven).ForAll(x => Console.WriteLine(x));
+            /* 1. Включите параллельную обработку */
+            /* 2. Отфильтруйте с помощью IsHeavyEven */
+            /* 3. Выведите через ForAll в консоль (Console.WriteLine) */
+
+        Console.ReadLine();
+    }
+
+    // Имитация "тяжелого" вычисления
+    static bool IsHeavyEven(int n)
+    {
+        Thread.Sleep(50); // Искусственная задержка в 50 мс
+        return n % 2 == 0;
+    }
+}

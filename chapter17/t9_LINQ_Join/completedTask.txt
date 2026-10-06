@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
+
+record class Student(string Name, int GroupId);
+record class Group(int Id, string Title);
+record class Award(string Category);
+
+class Program
+{
+    static void Main()
+    {
+        // Исходные данные
+        var groups = new List<Group>
+        {
+            new Group(1, "Программисты"),
+            new Group(2, "Дизайнеры"),
+            new Group(3, "Маркетологи") // В этой группе пока нет студентов
+        };
+
+        var students = new List<Student>
+        {
+            new Student("Алексей", 1),
+            new Student("Мария", 1),
+            new Student("Иван", 2),
+            new Student("Дарья", 4) // Группы с Id 4 не существует
+        };
+
+        var awards = new List<Award>
+        {
+            new Award("Золотая медаль"),
+            new Award("Серебряная медаль")
+        };
+
+
+        Console.WriteLine("--- ЗАДАНИЕ 1: Обычное соединение (Join) ---");
+        // Задание: Соедините студентов с их группами по равенству Student.GroupId и Group.Id.
+        // Выведите анонимный тип с именем студента и названием его группы.
+        // Подсказка: Дарья и Маркетологи не должны попасть в результат!
+
+        var task1 = students.Join(groups, s =>s.GroupId,x=>x.Id,(s,x)=>new { Name = s.Name, GroupTitle =x.Title});
+
+        foreach (var item in task1)
+            Console.WriteLine($"{item.Name} учится в группе: {item.GroupTitle}");
+
+
+
+        Console.WriteLine("\n--- ЗАДАНИЕ 2: Групповое соединение (GroupJoin) ---");
+        // Задание: Сгруппируйте студентов по группам, используя GroupJoin (начните с коллекции groups).
+        // Создайте анонимный тип: Название группы (Title) и список студентов (Students).
+        // Подсказка: у Маркетологов список студентов будет пустым.
+
+        var task2 = groups.GroupJoin(students, g => g.Id, s => s.GroupId, (g, studentsG) => new {g.Title,studentsG});
+
+        foreach (var g in task2)
+        {
+            Console.WriteLine($"Группа: {g.Title}");
+            foreach (var s in g.studentsG)
+            {
+                Console.WriteLine($"  - {s.Name}");
+            }
+        }
+
+
+
+        Console.WriteLine("\n--- ЗАДАНИЕ 3: Порядковое объединение (Zip) ---");
+        // Задание: Соедините список студентов (возьмите первых двух: Алексей, Мария)
+        // со списком наград (awards) один к одному по индексу.
+        // На выходе должен получиться кортеж или анонимный тип с именем студента и его наградой.
+
+        var topStudents = students.Take(2);
+        var task3 = topStudents.Zip(awards);
+
+        foreach (var item in task3)
+        {
+            // Напишите вывод в консоль самостоятельно в зависимости от того, как назвали свойства
+             Console.WriteLine($"{item.Item1.Name} получил награду: {item.Item2.Category}");
+        }
+    }
+}

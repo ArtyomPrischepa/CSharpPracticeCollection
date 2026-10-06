@@ -1,0 +1,59 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Наш список товаров на складе
+        List<Product> products = new List<Product>
+        {
+            new Product("Ноутбук", 1200, true),
+            new Product("Смартфон", 700, true),
+            new Product("Клавиатура", 50, true),
+            new Product("Мышь", 25, false), // Нет в наличии
+            new Product("Монитор", 300, true)
+        };
+
+        // ЗАДАНИЕ 1: Проверь, все ли товары стоят дороже 10 долларов
+        bool allExpensive = products.All(x=>x.Price>10)/* ТВОЙ КОД ЗДЕСЬ */;
+        Console.WriteLine($"Все товары дороже 10$: {allExpensive}"); // Должно быть: True
+
+        // ЗАДАНИЕ 2: Проверь, есть ли в списке хотя бы один товар, которого нет в наличии
+        bool hasMissingProducts = products.Any(x=>x.IsInStock == false)/* ТВОЙ КОД ЗДЕСЬ */;
+        Console.WriteLine($"Есть отсутствующие товары: {hasMissingProducts}"); // Должно быть: True
+
+        // ЗАДАНИЕ 3: Получи самый ПЕРВЫЙ товар в списке
+        Product firstProduct = products.FirstOrDefault()!/* ТВОЙ КОД ЗДЕСЬ */;
+        Console.WriteLine($"Первый товар: {firstProduct?.Name}"); // Должно быть: Ноутбук
+
+        // ЗАДАНИЕ 4: Получи ПЕРВЫЙ товар, цена которого меньше 100 долларов
+        Product cheapProduct = products.FirstOrDefault(x=>x.Price<100)!/* ТВОЙ КОД ЗДЕСЬ */;
+        Console.WriteLine($"Первый товар дешевле 100$: {cheapProduct?.Name}"); // Должно быть: Клавиатура
+
+        // ЗАДАНИЕ 5: Получи ПОСЛЕДНИЙ товар, который ЕСТЬ в наличии
+        Product lastInStock = products.LastOrDefault(x=>x.IsInStock==true)!/* ТВОЙ КОД ЗДЕСЬ */;
+        Console.WriteLine($"Последний в наличии: {lastInStock?.Name}"); // Должно быть: Монитор
+
+        // ЗАДАНИЕ 6: Попробуй найти товар с ценой больше 5000 долларов. 
+        // Используй метод, который НЕ вызовет ошибку, а вернет null, если товар не найден.
+        Product ultraExpensive = products.FirstOrDefault(x=>x.Price>5000)!/* ТВОЙ КОД ЗДЕСЬ */;
+        string result = ultraExpensive == null ? "Товар не найден" : ultraExpensive.Name;
+        Console.WriteLine($"Поиск товара дороже 5000$: {result}"); // Должно быть: Товар не найден
+    }
+}
+
+class Product
+{
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public bool IsInStock { get; set; }
+
+    public Product(string name, decimal price, bool isInStock)
+    {
+        Name = name;
+        Price = price;
+        IsInStock = isInStock;
+    }
+}

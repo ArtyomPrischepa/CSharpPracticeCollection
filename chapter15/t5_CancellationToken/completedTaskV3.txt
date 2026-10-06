@@ -1,0 +1,94 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("--- Старт программы ---\n");
+
+        // ЗАДАЧА 1: Реализуйте "мягкий" выход из задачи.
+        // Задача должна в цикле от 1 до 10 выводить числа в консоль с задержкой Thread.Sleep(200).
+        // Если пришел сигнал отмены, выведите "Реализован мягкий выход" и завершите метод (return).
+        // Через 1 секунду после старта отмените задачу из главного потока.
+
+        using (CancellationTokenSource cts1 = new CancellationTokenSource())
+        {
+            CancellationToken token1 = cts1.Token;
+
+            Task task1 = new Task(() =>
+            {
+
+                for (var i = 1; i < 11; i++)
+                {
+                    if (!token1.IsCancellationRequested)
+                    {
+
+                        Console.WriteLine($"{i}");
+                        Thread.Sleep(200);
+                    }
+                    else
+                        return;
+                }// Напишите код задачи здесь:
+
+
+            }, token1);
+
+            task1.Start();
+            Thread.Sleep(1000);
+
+            // Вызовите отмену здесь:
+            cts1.Cancel();
+            task1.Wait();
+            Thread.Sleep(500); // Даем время задаче завершиться
+            Console.WriteLine($"Статус задачи 1: {task1.Status}");
+        }
+
+
+        Console.WriteLine("\n-----------------------\n");
+
+
+        // ЗАДАЧА 2: Реализуйте жесткий выход с генерацией исключения через ThrowIfCancellationRequested.
+        // Оберните ожидание задачи (task2.Wait()) в блок try-catch.
+        // Перехватите AggregateException и проверьте, является ли внутреннее исключение типом TaskCanceledException.
+        // Если да, выведите в консоль: "Задача была жестко прервана!".
+
+        using (CancellationTokenSource cts2 = new CancellationTokenSource())
+        {
+            CancellationToken token2 = cts2.Token;
+
+            Task task2 = new Task(() =>
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    if (token2.IsCancellationRequested)// Напишите проверку токена с генерацией исключения здесь:
+                        token2.ThrowIfCancellationRequested();
+                    Thread.Sleep(200);
+                    Console.WriteLine($"{i}");
+                }
+            }, token2);
+
+            // Напишите запуск, отмену и обработку try-catch здесь:
+            task2.Start();
+            Thread.Sleep(1000);
+            cts2.Cancel();
+            try
+            {
+                task2.Wait();
+            }
+            catch (AggregateException aex)
+            {
+                foreach (var ex in aex.InnerExceptions)
+                {
+                    if (ex is TaskCanceledException)
+                        Console.WriteLine("TaskCanceledException");
+                }
+            }
+            Console.WriteLine($"Статус задачи 2: {task2.Status}");
+        }
+
+        Console.WriteLine("\n--- Конец программы ---");
+        Console.ReadLine();
+    }
+}

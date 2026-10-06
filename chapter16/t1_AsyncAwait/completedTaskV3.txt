@@ -1,0 +1,32 @@
+﻿using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    // ЗАДАЧА 1: Сделайте метод Main асинхронным (Task)
+    static async void Main(string[] args)
+    {
+        Console.WriteLine("--- Старт ---\n");
+        // ЗАДАЧА 3: Вызовите PrintMessageAsync с "Тест 1" с await
+        await PrintMessageAsync("test 1");
+        // ЗАДАЧА 5: Запустите PrintMessageAsync 3 раза ("A", "B", "C") параллельно и дождитесь их
+        var a = PrintMessageAsync("a");
+        var b = PrintMessageAsync("b");
+        var c = PrintMessageAsync("c");
+        await a;
+        await b;
+        await c;
+        // ЗАДАЧА 6: Асинхронная лямбда Func<int, Task> с задержкой 500мс и выводом числа
+        Func<int, Task> asyncLambda = async (int s) => { await Task.Delay(500); Console.WriteLine(s); };
+
+        Console.WriteLine("\n--- Конец ---");
+    }
+
+    // ЗАДАЧА 2: Сделайте метод асинхронным с типом Task
+    static async Task PrintMessageAsync(string message)
+    {
+        // ЗАДАЧА 4: Замените Thread.Sleep на Task.Delay(2000)
+        await Task.Delay(2000);
+        Console.WriteLine(message);
+    }
+}

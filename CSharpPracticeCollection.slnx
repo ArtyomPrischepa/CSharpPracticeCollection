@@ -14,6 +14,7 @@
     <Project Path="chapter16/t5_IAsyncEnumerable/t5_IAsyncEnumerable.csproj" Id="3164dcad-f400-4fd8-8b13-082f58122b60" />
   </Folder>
   <Folder Name="/Chapter17/">
+    <Project Path="../chapter17/t91_LINQ_AllAny/t91_LINQ_AllAny.csproj" Id="5552abe5-2c05-473b-82b6-622b91cfaf71" />
     <Project Path="chapter17/t1_LINQ/t1_LINQ.csproj" Id="67857907-6aa4-4640-8cc4-f6459af894f5" />
     <Project Path="chapter17/t2_LINQ/t2_LINQ.csproj" Id="30231471-719e-4854-bdda-42f5658544a5" />
     <Project Path="chapter17/t3_LINQ/t3_LINQ.csproj" Id="8967145d-133a-4f2b-8bd5-1c175aae56b4" />
@@ -22,6 +23,12 @@
     <Project Path="chapter17/t6_LINQ_Aggregate/t6_LINQ_Aggregate.csproj" Id="683686a1-0ec5-4ccd-9f34-f2ccc90efb03" />
     <Project Path="chapter17/t7_LINQ_Skip/t7_LINQ_Skip.csproj" Id="0e5b843d-cd0f-40e4-b4bf-cf6f634b33fe" />
     <Project Path="chapter17/t8_LINQ_GroupBy/t8_LINQ_GroupBy.csproj" Id="3dd92867-2a80-4ce2-b0e7-f567aee107f2" />
+    <Project Path="chapter17/t92_LINQ_Deferred_Immediate/t92_LINQ_Deferred_Immediate.csproj" Id="79a696f9-103d-428b-ac17-814ec4ea4f69" />
+    <Project Path="chapter17/t9_LINQ_Join/t9_LINQ_Join.csproj" Id="26e0f14e-abd3-4ebb-b0d1-81bf021a84db" />
+  </Folder>
+  <Folder Name="/Chapter18_PLINQ/">
+    <Project Path="Chapter18_PLINQ/t1_PLINQ_AsParallel_ForAll/t1_PLINQ_AsParallel_ForAll.csproj" Id="b163f972-9a2f-4452-b3d1-2c020d9b706a" />
+    <Project Path="Chapter18_PLINQ/t2_PLINQ_AsOrdered/t2_PLINQ_AsOrdered.csproj" Id="99248622-4fc8-4b7f-8ec7-8a4c4a2fd8dc" />
   </Folder>
   <Folder Name="/Элементы решения/">
     <File Path="gitCommands.txt" />
