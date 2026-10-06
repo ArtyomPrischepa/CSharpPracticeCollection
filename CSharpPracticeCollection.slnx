@@ -29,6 +29,10 @@
   <Folder Name="/Chapter18_PLINQ/">
     <Project Path="Chapter18_PLINQ/t1_PLINQ_AsParallel_ForAll/t1_PLINQ_AsParallel_ForAll.csproj" Id="b163f972-9a2f-4452-b3d1-2c020d9b706a" />
     <Project Path="Chapter18_PLINQ/t2_PLINQ_AsOrdered/t2_PLINQ_AsOrdered.csproj" Id="99248622-4fc8-4b7f-8ec7-8a4c4a2fd8dc" />
+    <Project Path="Chapter18_PLINQ/t3_PLINQ_Exceptions/t3_PLINQ_Exceptions.csproj" Id="39baadd9-4545-49ff-9436-180eb628d6e3" />
+  </Folder>
+  <Folder Name="/Chapter19_Reflection/">
+    <Project Path="Chapter19_Reflection/t1_Reflection_GetType/t1_Reflection_GetType.csproj" Id="5e1968da-11ad-4f5e-b42f-8cf837a83c98" />
   </Folder>
   <Folder Name="/Элементы решения/">
     <File Path="gitCommands.txt" />

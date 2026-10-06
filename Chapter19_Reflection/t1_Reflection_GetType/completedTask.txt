@@ -1,0 +1,68 @@
+using System;
+
+namespace ReflectionAssignment
+{
+    // Инкапсулируем интерфейс и класс для исследования
+    public interface ITaskProcessor { void Process(); }
+
+    public class Device : ITaskProcessor
+    {
+        public string Model { get; set; } = "Generic";
+        public void Process() => Console.WriteLine("Processing...");
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Device myDevice = new Device();
+
+            // ==========================================
+            // ШАГ 1: Получение типа тремя способами
+            // ==========================================
+
+            // 1. Получи тип класса Device с помощью оператора typeof
+            Type type1 = typeof(Device);// ТВОЙ КОД ЗДЕСЬ
+
+            // 2. Получи тип с помощью метода GetType() у переменной myDevice
+            Type type2 = myDevice.GetType();// ТВОЙ КОД ЗДЕСЬ
+
+            // 3. Получи тип с помощью статического метода Type.GetType(). 
+            // Передай строку с полным именем: "ReflectionAssignment.Device"
+            Type? type3 = Type.GetType("reflectionassignment.device",false,true);// ТВОЙ КОД ЗДЕСЬ
+
+
+            // ==========================================
+            // ШАГ 2: Исследование свойств типа
+            // ==========================================
+
+            Console.WriteLine("--- Информация о типе ---");
+
+            // Выведи в консоль короткое имя типа (используй type1)
+            Console.WriteLine($"Короткое имя: {type1.Name /* ТВОЙ КОД ЗДЕСЬ */ }");
+
+            // Выведи в консоль полное имя типа
+            Console.WriteLine($"Полное имя: {type1.FullName/* ТВОЙ КОД ЗДЕСЬ */ }");
+
+            // Проверь, является ли тип классом (IsClass) и выведи true/false
+            Console.WriteLine($"Это класс? {type1.IsClass/* ТВОЙ КОД ЗДЕСЬ */ }");
+
+
+            // ==========================================
+            // ШАГ 3: Поиск реализованных интерфейсов
+            // ==========================================
+
+            Console.WriteLine("\n--- Реализованные интерфейсы ---");
+
+            // Получи массив интерфейсов с помощью метода GetInterfaces() у type1
+            Type[] interfaces = type1.GetInterfaces();// ТВОЙ КОД ЗДЕСЬ
+
+
+            foreach (Type i in interfaces)
+            {
+                // Выведи имя каждого интерфейса в консоль
+                Console.WriteLine(i.Name);
+            }
+        }
+    }
+}
