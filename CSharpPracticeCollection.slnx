@@ -35,7 +35,6 @@
     <Project Path="Chapter19_Reflection/t1_Reflection_GetType/t1_Reflection_GetType.csproj" Id="5e1968da-11ad-4f5e-b42f-8cf837a83c98" />
   </Folder>
   <Folder Name="/Элементы решения/">
-    <File Path="gitCommands.txt" />
     <Project Path="Test/Test.csproj" Id="020453aa-bca7-4194-82f8-a050ffd406c5" />
   </Folder>
 </Solution>

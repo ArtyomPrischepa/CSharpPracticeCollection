@@ -1,0 +1,3 @@
+git push origin main --force
+git reset --hard HEAD~1
+git mv из папки 1 переместить в папку 2
