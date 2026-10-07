@@ -1,1 +1,57 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Исходный массив чисел
+        int[] numbers = { 15, 4, 8, 23, 42, 11, 16, 5, 9, 30 };
+
+        Console.WriteLine("--- Задание 1: Фильтрация и сортировка ---");
+        // ЗАДАНИЕ 1: Выбери из массива numbers только те числа, которые БОЛЬШЕ 10, 
+        // и отсортируй их ПО ВОЗРАСТАНИЮ. Используй МЕТОДЫ РАСШИРЕНИЯ (Method Syntax).
+
+        var task1 = numbers.Where(x => x > 10).OrderBy(x => x);// НАПИШИ СВОЙ КОД ЗДЕСЬ (используй .Where() и .OrderBy())
+
+        foreach (var num in task1)
+        {
+            Console.Write(num + " "); // Ожидаемый вывод: 11 15 16 23 30 42
+        }
+        Console.WriteLine("\n");
+
+
+        Console.WriteLine("--- Задание 2: Операторы запросов (SQL-style) ---");
+        // ЗАДАНИЕ 2: Выбери из массива numbers только ЧЕТНЫЕ числа.
+        // Используй ОПЕРАТОРЫ ЗАПРОСОВ (Query Syntax: from ... in ... where ... select ...).
+
+        var task2 = from o in numbers
+                    where o % 2 == 0
+                    select o;// НАПИШИ СВОЙ КОД ЗДЕСЬ
+
+        foreach (var num in task2)
+        {
+            Console.Write(num + " "); // Ожидаемый вывод: 4 8 42 16 30
+        }
+        Console.WriteLine("\n");
+
+
+        Console.WriteLine("--- Задание 3: Проекция (Изменение формы данных) ---");
+        // ЗАДАНИЕ 3: Возьми массив numbers, найди числа МЕНЬШЕ 10 
+        // и вместо самих чисел верни строки вида: "Число: X" (где X - это само число).
+        // Подсказка: для преобразования используй метод .Select()
+
+        var task3 = numbers.Where(x => x < 10).Select(x => "Число: " + x);// НАПИШИ СВОЙ КОД ЗДЕСЬ
+
+        foreach (var str in task3)
+        {
+            Console.WriteLine(str);
+            // Ожидаемый вывод:
+            // Число: 4
+            // Число: 8
+            // Число: 5
+            // Число: 9
+        }
+    }
+}

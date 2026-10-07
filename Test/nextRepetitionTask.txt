@@ -1,2 +1,6 @@
 ﻿ch16
 t2_AsyncResult
+
+reading
+ch17
+t91_LINQ_AllAny

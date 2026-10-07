@@ -1,0 +1,14 @@
+﻿@page
+@{
+    Layout = "_Layout";
+}
+
+<h3>Исследование типов</h3>
+<p>Если нам нужны компоненты типа, то мы применяем к нему метод <code>GetMembers()</code>.</p>
+
+
+
+<pre>
+Type type = typeof(MyClass);
+MemberInfo[] allMembers = type.GetMembers();
+</pre>

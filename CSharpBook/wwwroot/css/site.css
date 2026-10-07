@@ -1,0 +1,66 @@
+﻿body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #8AAB8F;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: #8AAB8F;
+    border-right: 1px solid #e0e0e0;
+    padding: 20px;
+}
+
+    .sidebar h2 {
+        font-size: 1.2rem;
+        color: #000000; /* Чисто черный цвет для слова "Содержание" */
+        margin-bottom: 20px;
+        font-weight: bold; /* Делает заголовок плотнее и заметнее */
+    }
+
+    .sidebar a {
+        color: #000000; /* Чисто черный цвет для самих ссылок */
+        text-decoration: none;
+        font-size: 25px;
+    }
+
+        .sidebar a:hover {
+            text-decoration: underline; /* Ссылка подчеркнется только при наведении мышкой */
+            color: #333333; /* При наведении станет слегка мягче */
+        }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar li {
+        margin-bottom: 10px;
+    }
+
+.content {
+    flex: 1;
+    padding: 40px;
+    max-width: 800px;
+    color: #000000;
+    line-height: 1.7; /* Межстрочный интервал (чтобы текст не слипался) */
+    font-size: 1.75rem; /* <-- МЕНЯЙТЕ ЗДЕСЬ. Чем больше число, тем крупнее текст */
+}
+
+pre {
+    background-color: #8AAB8F;
+    border: 1px solid #30363d;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: Consolas, Monaco, monospace;
+    color: #000000;
+    font-size: 1.5rem; /* <-- Добавьте эту строку. Уменьшает шрифт кода */
+}

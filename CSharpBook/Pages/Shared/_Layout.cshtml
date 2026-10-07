@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Учебник C#</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Боковая навигация -->
+        <aside class="sidebar">
+            <h2>Содержание</h2>
+            <nav>
+                <ul>
+                    <li><a href="/">Добро пожаловать</a></li>
+                    <li><a href="/Reflection">Исследование типов</a></li>
+                    <!-- Сюда будете просто дописывать новые ссылки на страницы -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Основной текст статьи -->
+        <main class="content">
+            @RenderBody()
+        </main>
+    </div>
+
+</body>
+</html>
